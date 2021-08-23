@@ -9,6 +9,7 @@
 /coverage
 # API Keys
 src/Components/API/
+src/API
 
 # production
 /build

@@ -1,12 +1,19 @@
-import React from 'react'
-import SearchBar from './Components/SearchBar/SearchBar';
-import ImageList from './Components/ImageList/ImageList';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Navbar from './Components/NavBar/Navbar';
+import SearchBar from './Components/searchBar/SearchBar';
+//import ImageList from './Components/ImageList/ImageList';
+
 
 function app() {
     return (
         <div className=" ui container" >
-            <SearchBar/>
+            <Router>
+                <Navbar />
+                <SearchBar />
+            </Router>
+
+
         </div>
     )
 }

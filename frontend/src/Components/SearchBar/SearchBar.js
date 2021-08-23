@@ -1,6 +1,7 @@
 import React from 'react'
-import UnsplashedAPI from '../API/UnsplashedAPI';
-import { useState, useContext, useEffect } from 'react';
+//import UnsplashAPI from '../API/UnsplashAPI';
+import UnsplashAPI from '../../API/UnsplashAPI';
+import { useState, useEffect } from 'react';
 
 
 import './SearchBar.css'
@@ -9,7 +10,7 @@ function SearchBar() {
 
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState('');
-    const [imageResults, setImageResults]
+    //const [imageResults, setImageResults] = useState([]); 
 
     function onSubmit(event) {
         event.preventDefault();
@@ -19,9 +20,9 @@ function SearchBar() {
     useEffect(() => {
         async function fetchDataQuery() {
             try{
-                const response = await UnsplashedAPI.get('/search/photos')
+                 await UnsplashAPI.get('/search/photos')
                 .then(res => {
-
+                    console.log(res)
                 })
             }catch (error){}
         } 
@@ -31,8 +32,9 @@ function SearchBar() {
             fetchDataQuery(); 
         }
     }, [query]);
-
-    <form onSubmit={onSubmit} >
+    
+    return (
+        <form onSubmit={onSubmit} >
         <label htmlFor="search">
             <span className="search-title">Search for Images </span>
         </label>
@@ -45,6 +47,8 @@ function SearchBar() {
         />
         <button type="submit">Search</button>
     </form>
+    )
+    
 };
 
 export default SearchBar
