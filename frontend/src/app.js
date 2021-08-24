@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Components/NavBar/Navbar';
-import SearchBar from './Components/searchBar/SearchBar';
+import SearchBar from './Components/SearchBar/SearchBar';
 //import ImageList from './Components/ImageList/ImageList';
 
 

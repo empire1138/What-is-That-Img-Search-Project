@@ -1,6 +1,6 @@
 import React from 'react'
-//import UnsplashAPI from '../API/UnsplashAPI';
-import UnsplashAPI from '../../API/UnsplashAPI';
+import UnsplashAPI from '../API/UnsplashAPI';
+//import UnsplashAPI from '../../API/UnsplashAPI';
 import { useState, useEffect } from 'react';
 
 
@@ -10,7 +10,7 @@ function SearchBar() {
 
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState('');
-    //const [imageResults, setImageResults] = useState([]); 
+    const [imageResults, setImageResults] = useState([]); 
 
     function onSubmit(event) {
         event.preventDefault();
@@ -18,11 +18,12 @@ function SearchBar() {
     }
 
     useEffect(() => {
-        async function fetchDataQuery() {
+        const fetchDataQuery = async() => {
             try{
-                 await UnsplashAPI.get('/search/photos')
+                 await UnsplashAPI.get(`/search/photos?query=${query}`)
                 .then(res => {
                     console.log(res)
+                    setImageResults(res.data.results)
                 })
             }catch (error){}
         } 
