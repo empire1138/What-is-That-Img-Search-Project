@@ -35,19 +35,23 @@ function SearchBar() {
     }, [query]);
     
     return (
-        <form onSubmit={onSubmit} >
-        <label htmlFor="search">
-            <span className="search-title">Search for Images </span>
-        </label>
-        <input
-            type="text"
-            id="search"
-            value={search}
-            onChange={event => setSearch(event.target.value)}
-            placeholder="Type Here for Image Search "
-        />
-        <button type="submit">Search</button>
-    </form>
+        <div className="ui container">
+            <form onSubmit={onSubmit} >
+                <label htmlFor="search">
+                    <span className="search-title">Search for Images </span>
+                </label>
+                <input
+                    type="text"
+                    id="search"
+                    value={search}
+                    onChange={event => setSearch(event.target.value)}
+                    placeholder="Type Here for Image Search "
+                />
+                <button type="submit">Search</button>
+            </form>
+           
+        </div>
+        
     )
     
 };
