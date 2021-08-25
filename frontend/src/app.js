@@ -1,22 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import Navbar from './Components/NavBar/Navbar';
-import SearchBar from './Components/SearchBar/SearchBar';
-import './app.css'
-//import ImageList from './Components/ImageList/ImageList';
-
+import {
+    BrowserRouter as Router,
+    Redirect,
+    Route,
+    Switch,
+} from 'react-router-dom';
+import routes from './Config/routes.js';
 
 function app() {
     return (
-        <div className=" ui container" >
-            <Router>
-                <Navbar />
-            </Router>
-            <div className="searchBar">
-                <SearchBar />
-            </div>
-        </div>
+        <Router>
+            <Switch>
+                {routes.map((route) => (
+                    <Route
+                        key={route.path}
+                        path={route.path}
+                        component={route.component}
+                    />
+                ))}
+            </Switch>
+        </Router>
     )
 }
 
-export default app
+export default app;
