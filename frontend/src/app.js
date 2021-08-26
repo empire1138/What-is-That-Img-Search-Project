@@ -8,6 +8,7 @@ import {
 import routes from './Config/routes.js';
 import Login from './Pages/Login/Login.js';
 import Registration from './Pages/Registration/Registration.js';
+import './app.css';
 
 function app() {
     return (
