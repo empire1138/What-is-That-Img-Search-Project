@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Login.module.css';
+import {Link} from 'react-router-dom';
 
 function Login() {
     return (
@@ -19,6 +20,9 @@ function Login() {
                         </div>
                     </div>
                     <button>login</button>
+                    <div>
+                        <Link to="/Registration">Need to Register instead?</Link>
+                    </div>
                 </form>
             </div>
       </div >

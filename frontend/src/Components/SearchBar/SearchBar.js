@@ -1,6 +1,6 @@
 import React from 'react'
-//import UnsplashAPI from '../API/UnsplashAPI';
 import UnsplashAPI from '../../API/UnsplashAPI';
+
 import { useState, useEffect } from 'react';
 
 
