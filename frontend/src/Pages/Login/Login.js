@@ -28,7 +28,7 @@ function Login() {
         <div className={styles.container} >
             <div className={styles.formContainer}>
 
-                <img src="../../../public/What_is_that_logo.png" alt='What-is-that-logo' className='login-logo' />
+                <img src="../../../public/Logo.png" alt='What-is-that-logo' className='login-logo' />
 
                 <h1>Login Page</h1>
 

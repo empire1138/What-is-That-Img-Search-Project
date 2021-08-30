@@ -7,7 +7,7 @@ function Button() {
     return (
         <div>
             <NavLink to='registration'>
-                <button className='btn'>Registration</button>
+                <button className='btn'>Logout</button>
             </NavLink>
         </div>
     )

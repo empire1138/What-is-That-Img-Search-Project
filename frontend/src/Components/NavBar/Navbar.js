@@ -43,22 +43,13 @@ function Navbar() {
                         <Link to='/' className=' nav-links' onClick={closeMobileMenu}>Home</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/userLogin' className=' nav-links' onClick={closeMobileMenu}>User Login</Link>
-                    </li>
-                    <li className='nav-item'
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}>
-                        <Link to='/dropDown' className=' nav-links' onClick={closeMobileMenu}>
-                            DropDown
-                            <i className='fas fa-caret-down' />
-                        </Link>
-                        {dropDown && <DropDown />}
+                        <Link to='/userLogin' className=' nav-links' onClick={closeMobileMenu}>User Profile</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/search' className=' nav-links' onClick={closeMobileMenu}>PLaceHolder: Search</Link>
+                        <Link to='/UserUpload' className=' nav-links' onClick={closeMobileMenu}>Upload Images</Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/registration' className=' nav-links-mobile' onClick={closeMobileMenu}>PLaceHolder: Reg</Link>
+                        <Link to='/registration' className=' nav-links-mobile' onClick={closeMobileMenu}>Logout</Link>
                     </li>
                 </ul>
                 <Button />

@@ -6,15 +6,17 @@ import { useState, useEffect } from 'react';
 
 import './SearchBar.css'
 
-function SearchBar() {
+function SearchBar(props) {
 
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState('');
     const [imageResults, setImageResults] = useState([]); 
+    
 
     function onSubmit(event) {
         event.preventDefault();
         setQuery(search);
+        props.returnImageResults(imageResults); 
     }
 
     useEffect(() => {
@@ -23,9 +25,11 @@ function SearchBar() {
                  await UnsplashAPI.get(`/search/photos?query=${query}`)
                 .then(res => {
                     console.log(res)
-                    setImageResults(res.data.results)
+                    setImageResults([...imageResults, ...res.data.results] )
                 })
-            }catch (error){}
+            }catch (error){
+                console.log(error);
+            }
         } 
         console.log({ query });
 
@@ -44,6 +48,7 @@ function SearchBar() {
                     type="text"
                     id="search"
                     value={search}
+                    className="searchTerm"
                     onChange={event => setSearch(event.target.value)}
                     placeholder="Type Here for Image Search "
                 />
