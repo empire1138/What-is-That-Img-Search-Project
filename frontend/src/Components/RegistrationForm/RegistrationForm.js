@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import useForm from "../../Hooks/useForm";
 import validate from "../../Validation/validateInfo";
 import { Link } from 'react-router-dom';
-import './RegistrationForm.css.css';
+import './RegistrationForm.css';
 
 function RegistrationForm({submitForm}) {
     const { handleChange, handleSubmit, values, errors } = useForm(

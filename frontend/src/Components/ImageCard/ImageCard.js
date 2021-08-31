@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 function ImageCard(props) {
 
     const { description, urls } = props.image;
-    let imageRef = React.createRef();
+    let imageRef = React.useRef(props);
 
     const [spans, setSpans] = useState([0]);
 
 
-   const setSpan = () => {
+   const setSpan = useCallback(() => {
         const height = imageRef.current.clientHeight;
         console.log(height, 'height')
 
@@ -17,12 +17,12 @@ function ImageCard(props) {
         console.log(spans, 'spans')
 
         setSpans(spans);
-    }
+    },[])
 
 
     useEffect(() => {
         imageRef.current.addEventListener('load', setSpan());
-    })
+    },[imageRef, setSpan, setSpans])
 
 
 
