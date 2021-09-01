@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 function ImageCard(props) {
 
     const { description, urls } = props.image;
-    let imageRef = React.useRef(props);
+    let imageRef = React.createRef();
 
     const [spans, setSpans] = useState([0]);
 
@@ -17,17 +17,17 @@ function ImageCard(props) {
         console.log(spans, 'spans')
 
         setSpans(spans);
-    },[])
+    },[imageRef])
 
 
     useEffect(() => {
         imageRef.current.addEventListener('load', setSpan());
-    },[imageRef, setSpan, setSpans])
+    },[imageRef])
 
 
 
     console.log(props, 'Props ImgCard')
-
+    console.log(imageRef, 'imgreF')
 
     return (
         <div>
