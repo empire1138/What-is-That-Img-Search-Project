@@ -1,13 +1,56 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useReducer } from "react";
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
 
+function loginReducer(state, action) {
+    switch (action.type) {
+        case 'login': {
+            return {
+                ...state,
+                isLoading: true,
+                error: '',
+            };
+        }
+        case 'success':{
+            return{
+                ...state,
+                isLoggedIn: true,
+            }
+        }
+        case 'error':{
+            return{
+                ...state,
+                error: 'Incorrect username or password',
+                isLoading: false,
+                email: '',
+                password: '',
+            }
+        }
+        default:
+            break;
+    }
+
+
+    return state;
+}
+const initialState = {
+    email: '',
+    password: '',
+    isLoading: false,
+    error: '',
+    isLoggedIn: false,
+}
+
 function Login() {
+
+    const [state, dispatch] = useReducer(loginReducer, initialState);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -20,8 +63,16 @@ function Login() {
     }
 
     // This will handle the loading and the validate when i figure it out. 
-    const hangleLogin = (e) => {
+    const handleLogin = async e => {
         e.preventDefault();
+        dispatch({type: ' login'}) // After this should be the function to pass in login then afterwards reset the setLoading 
+        try {
+            dispatch({type: 'success'})
+        } catch (error) {
+            dispatch({type : 'error'})
+            console.log(error, 'Login Error')
+        }
+
     }
 
     return (
@@ -32,8 +83,9 @@ function Login() {
 
                 <h1>Login Page</h1>
 
-                <form>
+                <form onSubmit={handleLogin}>
                     <div className={styles.loginForm}>
+                        {error && <p className='error'>{error}</p>}
                         <div className={styles.loginFormItem}>
                             <label htmlFor='email'>Email</label>
                             <input
@@ -59,7 +111,9 @@ function Login() {
 
                     </div>
                     {/* //{This Button will need the loader at it at some point} */}
-                    <button>login</button>
+                    <button className='submit' type='submit' disabled={loading}>
+                        {loading ? ' Logging in...' : 'Login '}
+                    </button>
 
                     <div>
                         <Link to="/Registration">Need to Register instead?</Link>
