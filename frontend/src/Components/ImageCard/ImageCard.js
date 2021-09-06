@@ -1,14 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 
 function ImageCard(props) {
 
+    console.log(props, 'Props')
     const { description, urls } = props.image;
-    let imageRef = React.createRef();
+    const createdBy = props.image.user.name;
+    // let imageRef = React.createRef();
+    let imageRef = useRef(true);
 
     const [spans, setSpans] = useState([0]);
 
 
-   const setSpan = useCallback(() => {
+    const setSpan = () => {
         const height = imageRef.current.clientHeight;
         console.log(height, 'height')
 
@@ -17,12 +20,15 @@ function ImageCard(props) {
         console.log(spans, 'spans')
 
         setSpans(spans);
-    },[imageRef])
+    }
 
 
     useEffect(() => {
-        imageRef.current.addEventListener('load', setSpan());
-    },[imageRef])
+        if (imageRef.current) {
+            setSpan();
+        }
+    }, [])
+
 
 
 
@@ -30,11 +36,12 @@ function ImageCard(props) {
     console.log(imageRef, 'imgreF')
 
     return (
-        <div>
-            <div style={{ gridRowEnd: `span ${spans}` }}>
-                <img ref={imageRef} alt={description} src={urls.regular} />
-            </div>
+
+        <div style={{ gridRowEnd: `span ${spans}` }}>
+            <img ref={imageRef} alt={description} src={urls.regular} />
+            <p>Created By: {createdBy}</p>
         </div>
+
     )
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import useForm from "../../Hooks/useForm";
-import validate from "../../Validation/validateInfo";
+import validate from "../../utils/Validation/validateInfo";
 import { Link } from 'react-router-dom';
 import './RegistrationForm.css';
 

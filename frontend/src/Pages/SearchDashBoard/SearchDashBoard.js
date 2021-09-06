@@ -6,8 +6,7 @@ import ImageList from '../../Components/ImageList/ImageList.js'
 
 function SearchDashBoard() {
     const [returnImageResults, setImageResults] = useState([]);
-
-    console.log(returnImageResults,'test');    
+   
      return (
         <div>
             <Navbar />

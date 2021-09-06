@@ -11,6 +11,8 @@ function SearchBar(props) {
     const [search, setSearch] = useState('');
     const [query, setQuery] = useState('');
     const [imageResults, setImageResults] = useState([]); 
+
+    // Need to clear the image Results for each result 
     
 
     function onSubmit(event) {
@@ -24,7 +26,6 @@ function SearchBar(props) {
             try{
                  await UnsplashAPI.get(`/search/photos?query=${query}`)
                 .then(res => {
-                    console.log(res)
                     setImageResults([...imageResults, ...res.data.results] )
                 })
             }catch (error){
@@ -36,7 +37,7 @@ function SearchBar(props) {
         if (query !== ''){
             fetchDataQuery(); 
         }
-    }, [query]);
+    }, [ query]);
     
     return (
         <div className="ui container">
