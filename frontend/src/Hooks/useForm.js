@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useReducer } from 'react'
+import { useFormReducer } from '../store/reducers/useForm_reducer';
 
 
 const useForm = (callback, validate) => {
+
+ const [state, dispatch] = useReducer(useFormReducer.useFormReducer, useFormReducer.initialState ); 
+
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
