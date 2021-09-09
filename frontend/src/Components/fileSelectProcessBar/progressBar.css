@@ -1,0 +1,27 @@
+.container-progress{
+    height: 20px;
+    width: 50%;
+    border-radius: 50px;
+    background-color: gray;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    margin-top: 25px;
+}
+
+.filler-styles{
+    height: 100%;
+    
+    background-color: cornflowerblue;
+    border-radius: inherit;
+    text-align: right;
+    transition: width 1s ease-in-out;
+}
+
+.label-styles{
+    padding: 5;
+    color: white;
+    font-weight: bold;
+}
