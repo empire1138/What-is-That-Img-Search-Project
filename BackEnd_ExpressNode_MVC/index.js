@@ -1,7 +1,10 @@
 const express = require('express');
 const logger = require("morgan");
 require('dotenv').config();
+const app = express();
 const cors = require('cors');
+
+
 const errorController = require('./controllers/error');
 const registrationRoutes = require('./routes/registration');
 const loginRoutes = require('./routes/login');
