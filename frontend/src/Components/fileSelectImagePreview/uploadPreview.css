@@ -1,0 +1,48 @@
+.container-img-preview {
+  height: 350px;
+  width: 430px;
+  position: relative;
+}
+
+.img-preview {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background: #fff;
+  border: 2px dashed #c2cdda;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.img-preview .image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: cente;
+}
+
+.img-preview img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-preview .icon{
+    font-size: 100px;
+    color: cornflowerblue;
+}
+
+@media screen and (max-width: 960px) {
+  
+      .container-img-preview {
+        height: 350px;
+        width: 350px;
+        position: relative;
+      }
+  
+}

@@ -1,0 +1,31 @@
+.container-autoTags {
+    height: 350px;
+    width: 430px;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .autoTags-box {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  
+@media screen and (max-width: 960px) {
+  
+  .container-autoTags {
+    height: 350px;
+    width: 350px;
+    position: relative;
+  }
+
+}

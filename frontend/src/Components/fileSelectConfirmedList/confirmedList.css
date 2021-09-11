@@ -1,0 +1,29 @@
+.container-confirmed-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45vw;
+    height: auto;
+    
+}
+
+.card-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ghostwhite;
+    width: 45vw;
+
+    border: 5px solid gainsboro;
+    border-radius: 3px;
+}
+
+.list-group{
+    display: flex;
+    justify-content:space-evenly;
+    height: auto;
+    color: cornflowerblue;
+    border: 5px solid gainsboro;
+    border-radius: 3px;
+    font-size: 20px;
+}

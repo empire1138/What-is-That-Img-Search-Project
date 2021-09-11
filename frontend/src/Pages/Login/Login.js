@@ -11,14 +11,14 @@ function loginReducer(state, action) {
                 error: '',
             };
         }
-        case 'success':{
-            return{
+        case 'success': {
+            return {
                 ...state,
                 isLoggedIn: true,
             }
         }
-        case 'error':{
-            return{
+        case 'error': {
+            return {
                 ...state,
                 error: 'Incorrect username or password',
                 isLoading: false,
@@ -65,62 +65,67 @@ function Login() {
     // This will handle the loading and the validate when i figure it out. 
     const handleLogin = async e => {
         e.preventDefault();
-        dispatch({type: ' login'}) // After this should be the function to pass in login then afterwards reset the setLoading 
+        dispatch({ type: ' login' }) // After this should be the function to pass in login then afterwards reset the setLoading 
         try {
-            dispatch({type: 'success'})
+            dispatch({ type: 'success' })
         } catch (error) {
-            dispatch({type : 'error'})
+            dispatch({ type: 'error' })
             console.log(error, 'Login Error')
         }
 
     }
 
     return (
-        <div className={styles.container} >
-            <div className={styles.formContainer}>
+        <div className={styles.pageContainer}>
+            <div className={styles.container} >
 
-                <img src="../../../public/Logo.png" alt='What-is-that-logo' className='login-logo' />
+                <div className={styles.logoContainer}>
+                    <img src="../../../public/Logo.png" alt='What-is-that-logo' className='login-logo' />
+                </div>
+                <div className={styles.formContainer}>
 
-                <h1>Login Page</h1>
+                    <h1>Login Page</h1>
 
-                <form onSubmit={handleLogin}>
-                    <div className={styles.loginForm}>
-                        {error && <p className='error'>{error}</p>}
-                        <div className={styles.loginFormItem}>
-                            <label htmlFor='email'>Email</label>
-                            <input
-                                type='text'
-                                id='email'
-                                name='email'
-                                value={email}
-                                onChange={onChangeEmail}
-                            // validations will go here at some point
-                            />
+                    <form onSubmit={handleLogin}>
+                        <div className={styles.loginForm}>
+                            {error && <p className='error'>{error}</p>}
+                            <div className={styles.loginFormItem}>
+                                <label htmlFor='email'>Email</label>
+                                <input
+                                    type='text'
+                                    id='email'
+                                    name='email'
+                                    value={email}
+                                    onChange={onChangeEmail}
+                                // validations will go here at some point
+                                />
+                            </div>
+                            <div className={styles.loginFormItem}>
+                                <label htmlFor='password'>Password</label>
+                                <input
+                                    type='password'
+                                    id='password'
+                                    name='password'
+                                    value={password}
+                                    onChange={onChangePassword}
+                                // // validations will go here at some point
+                                />
+                            </div>
+
                         </div>
-                        <div className={styles.loginFormItem}>
-                            <label htmlFor='password'>Password</label>
-                            <input
-                                type='password'
-                                id='password'
-                                name='password'
-                                value={password}
-                                onChange={onChangePassword}
-                            // // validations will go here at some point
-                            />
+                        {/* //{This Button will need the loader at it at some point} */}
+                        <button className='submit' type='submit' disabled={loading}>
+                            {loading ? ' Logging in...' : 'Login '}
+                        </button>
+
+                        <div>
+                            <Link to="/Registration">Need to Register instead?</Link>
                         </div>
+                    </form>
+                </div>
+            </div >
+        </div>
 
-                    </div>
-                    {/* //{This Button will need the loader at it at some point} */}
-                    <button className='submit' type='submit' disabled={loading}>
-                        {loading ? ' Logging in...' : 'Login '}
-                    </button>
-
-                    <div>
-                        <Link to="/Registration">Need to Register instead?</Link>
-                    </div>
-                </form>
-            </div>
-        </div >
     )
 }
 
