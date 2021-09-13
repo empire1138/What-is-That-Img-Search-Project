@@ -3,6 +3,7 @@ const logger = require("morgan");
 require('dotenv').config();
 const app = express();
 const cors = require('cors');
+const multer =require('multer');
 
 
 const errorController = require('./controllers/error');
@@ -12,10 +13,15 @@ const searchDashBoardRoutes = require('./routes/searchDashBoard');
 const imgUploadRoutes = require('./routes/imgUpload')
 const logoutRoutes = require('./routes/logout'); 
 
-app.use(cors());
+app.use(cors({
+    origin: true,
+    methods: ["GET", "POST"],
+    credentials:true, 
+}));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(multer().single('image')); 
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
