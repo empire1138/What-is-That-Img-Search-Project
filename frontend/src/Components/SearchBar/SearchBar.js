@@ -12,6 +12,8 @@ function SearchBar(props) {
     const [query, setQuery] = useState('');
     const [imageResults, setImageResults] = useState([]); 
 
+    const [searchPage,setSearchPage] = useState(0);
+
     // Need to clear the image Results for each result 
     
 
@@ -21,8 +23,22 @@ function SearchBar(props) {
         props.returnImageResults(imageResults); 
     }
 
+
+
     useEffect(() => {
         const fetchDataQuery = async() => {
+            const url = `https://api.unsplash.com/search/photos?page=${page}`
+            //const url = searchPage ? `${url}&query=search` : url
+
+            const options = {
+                params: {
+                  page: page,
+                  per_page: perPage,
+                  order_by: "popularity"
+                }
+              };
+
+
             try{
                  await UnsplashAPI.get(`/search/photos?query=${query}`)
                 .then(res => {
