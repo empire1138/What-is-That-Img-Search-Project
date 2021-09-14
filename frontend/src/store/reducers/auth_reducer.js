@@ -27,6 +27,17 @@ export const AuthReducer = (state = initialState, action) => {
                 ...state, 
                 profile: null
             }
+            case ACTION_TYPES.REGISTER_SUCCESS: 
+            return {
+                ...state, 
+                is_authenticated: false
+            }
+            case ACTION_TYPES.REGISTER_FAIL: 
+            return {
+                ...state, 
+                profile: null,
+                is_authenticated:null
+            }
         default: 
             return state
     }

@@ -27,16 +27,16 @@ function SearchBar(props) {
 
     useEffect(() => {
         const fetchDataQuery = async() => {
-            const url = `https://api.unsplash.com/search/photos?page=${page}`
-            //const url = searchPage ? `${url}&query=search` : url
+            // const url = `https://api.unsplash.com/search/photos?page=${page}`
+            // //const url = searchPage ? `${url}&query=search` : url
 
-            const options = {
-                params: {
-                  page: page,
-                  per_page: perPage,
-                  order_by: "popularity"
-                }
-              };
+            // const options = {
+            //     params: {
+            //       page: page,
+            //       per_page: perPage,
+            //       order_by: "popularity"
+            //     }
+            //   };
 
 
             try{

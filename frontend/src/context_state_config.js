@@ -5,7 +5,8 @@ import * as ACTIONS from './store/actions/actions'
 //These will need to be changed as the state and reducer needs change 
 import * as ReducerOne from './store/reducers/plain_reducer';
 import * as AuthReducer from './store/reducers/auth_reducer';
-import * as FormReducer from './store/reducers/useForm_reducer'
+import * as FormReducer from './store/reducers/useForm_reducer';
+import Routes from ''
 import Auth from './utils/auth';
 
 const auth = new Auth()
@@ -31,7 +32,7 @@ const ContextState = () => {
     }
 
     //Auth Reducer I think this will work need to change maybe
-   
+
     const [stateAuthReducer, dispatchAuthReducer] = useReducer(AuthReducer.AuthReducer,
         AuthReducer.initialState)
 
@@ -57,18 +58,31 @@ const ContextState = () => {
 
 
     const handleFormChange = (event) => {
-      dispatchFormReducer(ACTIONS.user_input_change(event.target.value))
+        dispatchFormReducer(ACTIONS.user_input_change(event.target.value))
     };
 
     const handleFormSubmit = (event) => {
-      event.preventDefault();
-      event.persist();             dispatchFormReducer(ACTIONS.user_input_submit(event.target.useContext.value))
+        event.preventDefault();
+        event.persist(); dispatchFormReducer(ACTIONS.user_input_submit(event.target.useContext.value))
     };
 
     //Handle authentication from callback
     const handleAuthentication = (props) => {
-      if(props.location.hash) {
-        auth.handleAuth()
-      }
+        if (props.location.hash) {
+            auth.handleAuth()
+        }
     }
+
+    return (
+        <div>
+            <Context.Provider
+                value={{
+
+                }}
+            >
+            <Routes/> 
+            </Context.Provider>
+        </div>
+    )
+
 }
