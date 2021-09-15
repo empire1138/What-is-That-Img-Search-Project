@@ -11,8 +11,8 @@ module.exports = class image {
   static fetchAll() {
     return db.execute('SELECT * FROM images');
   }
-  static fetchOne(id){
-      return db.execute('SELECT * FROM images WHERE id = ?', [id])
+  static fetchOne(id) {
+    return db.execute('SELECT * FROM images WHERE id = ?', [id])
   }
 
   static save(image) {
@@ -21,11 +21,30 @@ module.exports = class image {
       [image.title, image.body, image.userName]
     );
   }
-  static update(id, tags){
-      return db.execute('UPDATE images SET tags = ? WHERE id = ? ', [tags, id])
+  static update(id, tags) {
+    return db.execute('UPDATE images SET tags = ? WHERE id = ? ', [tags, id])
   }
 
   static delete(id) {
     return db.execute('DELETE FROM image WHERE id = ?', [id]);
   }
+
+  static storeImage(inputValue, callback) {
+    db.query('SELECT * FROM images WHERE image_name =?', inputValue.image_name, function (error, data, fields) {
+      let msg;
+
+      if (error) throw error;
+      if (data.lenth > 1) {
+        msg = inputValue.image_name + "already exist's";
+      } else {
+        db.query('INSERT INTO images SET ? ', inputValue.image_name, function (error, data) {
+          if (error) throw error;
+        })
+        msg = inputValue.image_name + "is uploaded successfully"
+      }
+      return callback(msg);
+    })
+  }
+
+
 };
