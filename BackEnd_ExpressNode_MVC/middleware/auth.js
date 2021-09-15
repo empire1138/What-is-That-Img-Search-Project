@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator'); 
+const bcrypt = require('bcryptjs');
 
 module.exports = async (req, res, next) => {
     if (!req.headers.authorization) {
