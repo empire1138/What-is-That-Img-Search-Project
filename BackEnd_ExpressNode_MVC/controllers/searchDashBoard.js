@@ -1,0 +1,1 @@
+const SearchDashBoard = require('../models/searchDashBoard');

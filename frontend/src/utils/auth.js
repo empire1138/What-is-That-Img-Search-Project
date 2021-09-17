@@ -1,6 +1,6 @@
 import history from './history';
 import axios from 'axios'
-const API_URL = "http://localhost:3030/auth/"
+const API_URL = "http://localhost:3306"
 
 
 // I have to change all of this to work with axios 
@@ -9,7 +9,7 @@ class Auth {
 
 
   resister = (firstName,lastName, email, password, confirmedPassword) => {
-      return axios.post(API_URL + "register" , {
+      return axios.post(API_URL + "/Registration" , {
         firstName,
         lastName, 
         email,
@@ -19,7 +19,7 @@ class Auth {
   } 
 
   login = (email, password) =>{
-    return axios.post(API_URL + "login", {
+    return axios.post(API_URL, {
       email, 
       password
     })
@@ -33,48 +33,8 @@ class Auth {
     })
   }
 
-  handleAuth = () => {
-    this.auth0.parseHash((err, authResult) => {
-      if(authResult) {
-        localStorage.setItem('access_token', authResult.accessToken)
-        localStorage.setItem('id_token', authResult.idToken)
-
-        let expiresAt = JSON.stringify((authResult.expiresIn * 1000 + new Date().getTime()))
-        localStorage.setItem('expiresAt', expiresAt)
-
-        this.getProfile();
-        setTimeout(() => { history.replace('/authcheck') }, 600);
-      } else {
-        console.log(err)
-      }
-    })
-  }
-
-  getAccessToken = () => {
-    if(localStorage.getItem('access_token')) {
-      const accessToken = localStorage.getItem('access_token')
-      return accessToken
-    } else {
-      return null
-    }
-  }
-
-
-  getProfile = () => {
-    let accessToken = this.getAccessToken()
-    if(accessToken) {
-      this.auth0.client.userInfo(accessToken, (err, profile) => {
-          if(profile) {
-            this.userProfile = { profile }
-          }
-      } )
-    }
-  }
-
-
   logout = () => {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('id_token')
+    localStorage.removeItem("user");
     localStorage.removeItem('expiresAt')
     setTimeout(() => { history.replace('/authcheck') }, 200);
   }

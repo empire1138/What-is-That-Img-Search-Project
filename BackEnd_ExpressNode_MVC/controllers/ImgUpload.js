@@ -1,0 +1,1 @@
+const ImgUpload = '../models/image.js'; 

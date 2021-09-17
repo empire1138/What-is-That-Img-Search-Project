@@ -7,10 +7,12 @@ const multer = require('multer');
 
 
 const errorController = require('./controllers/error');
-const loginRoutes = require('./routes/login');
+const loginRoutes = require('./routes/auth');
 const searchDashBoardRoutes = require('./routes/searchDashBoard');
 const imgUploadRoutes = require('./routes/imgUpload')
 const logoutRoutes = require('./routes/logout');
+const userProfileRoutes = require('./routes/userProfile');
+const { urlencoded } = require('body-parser');
 
 app.use(cors({
     origin: true,
@@ -44,12 +46,16 @@ app.use((req, res, next) => {
 //Non-Protected Routes 
 //This routes has both login and Sign-up
 app.use('/', loginRoutes);
-app.use(errorController.get404);
-app.use(errorController.get500);
+
 
 //Protected Routes 
 app.use('/SearchDashBoard', searchDashBoardRoutes);
 app.use('/ImgUpload', imgUploadRoutes);
+app.use('/UserProfile', userProfileRoutes);
 app.use('/logout', logoutRoutes);
+
+// Error Catching Routes
+app.use(errorController.get404);
+app.use(errorController.get500);
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));

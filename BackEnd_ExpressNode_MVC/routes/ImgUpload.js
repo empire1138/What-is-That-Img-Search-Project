@@ -11,3 +11,5 @@ router.get('/', ImgUploadController.confirmedUpload);
 // get for image upload preview done by ID 
 router.get('/:ID', ImgUploadController.imgByID); 
 
+module.exports = router; 
+
