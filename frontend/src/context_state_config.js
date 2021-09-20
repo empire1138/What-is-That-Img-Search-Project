@@ -14,31 +14,22 @@ const auth = new Auth()
 // This will change as well. Really its a placeHolder till I work out all of the context needs. 
 const ContextState = () => {
 
-
-    //Plain Reducer Following Template 
-    const [stateReducerOne, dispatchReducerOne] = useReducer(ReducerOne.ReducerOne,
-        ReducerOne.initialState)
-
-    const handleDispatchTrue = () => {
-        //    dispatchReducer1(type: "SUCCESS")
-        //    dispatchReducer1(ACTIONS.SUCCESS)
-        dispatchReducerOne(ACTIONS.success())
-    }
-
-    const handleDispatchFalse = () => {
-        //     dispatchReducer1(type: "FAILURE")
-        //    dispatchReducer1(ACTIONS.FAILURE)
-        dispatchReducerOne(ACTIONS.failure())
-    }
-
+    
     //Auth Reducer I think this will work need to change maybe
 
     const [stateAuthReducer, dispatchAuthReducer] = useReducer(AuthReducer.AuthReducer,
         AuthReducer.initialState)
+    
+    const handleRegister = (userInfo) => {
+        dispatchAuthReducer(ACTIONS.REGISTER_SUCCESS(userInfo))
+    }    
 
+    const handleRegisterFail = (errorMessage) =>{
+        dispatchAuthReducer.apply(ACTIONS.REGISTER_FAIL(errorMessage))
+    }
 
-    const handleLogin = () => {
-        dispatchAuthReducer(ACTIONS.login_success())
+    const handleLogin = (userLogin) => {
+        dispatchAuthReducer(ACTIONS.login_success(userLogin))
     }
 
     const handleLogout = () => {
