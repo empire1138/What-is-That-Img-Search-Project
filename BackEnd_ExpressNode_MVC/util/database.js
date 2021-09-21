@@ -11,7 +11,6 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME
 });
 
-
 app.use(async function mysqlConnection(req, res, next) {
     try {
         req.db = await pool.getConnection();
@@ -27,9 +26,10 @@ app.use(async function mysqlConnection(req, res, next) {
     } catch (err) {
         // If anything downstream throw an error, we must release the connection allocated for the request
         console.log(err)
-        if (req.db) req.db.release();
+        if (req.db) req.release();
         throw err;
     }
 });
+
 
 module.exports = pool.promise();

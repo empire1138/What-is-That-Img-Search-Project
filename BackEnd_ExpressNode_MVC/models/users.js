@@ -1,8 +1,7 @@
 const db = require('../util/database');
 
 module.exports = class User {
-    constructor(userId, firstName, lastName, email, password) {
-        this.userId = userId;
+    constructor(firstName, lastName, email, password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -10,12 +9,12 @@ module.exports = class User {
     }
 
     static find(email) {
-        return db.execute('SELECT * FROM users WHERE email = ?', [email]);
+        return db.execute('SELECT * FROM user WHERE email = ?', [email]);
     }
 
     static save(user) {
         return db.execute(
-            'INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)',
+            'INSERT INTO user (firstName, lastName, email, password) VALUES (?, ?, ?, ?)',
             [user.firstName, user.lastName, user.email, user.password]
         );
     }

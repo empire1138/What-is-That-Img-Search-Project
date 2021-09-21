@@ -5,8 +5,8 @@ const router = express.Router();
 
 const authController = require('../controllers/auth'); 
 
-router.post('/Registration' ,authController.signup); 
+router.post('/registration' ,authController.signup); 
 
-router.post('', authController.login); 
+router.post('/login', authController.login); 
 
 module.exports = router; 

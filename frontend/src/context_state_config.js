@@ -6,6 +6,7 @@ import * as ACTIONS from './store/actions/actions'
 import * as ReducerOne from './store/reducers/plain_reducer';
 import * as AuthReducer from './store/reducers/auth_reducer';
 import * as FormReducer from './store/reducers/useForm_reducer';
+import * as RegisterReducer from './store/reducers/register_reducer';
 import Routes from ''
 import Auth from './utils/auth';
 
@@ -15,18 +16,20 @@ const auth = new Auth()
 const ContextState = () => {
 
 
+
+    //Register Reducer
+    const [stateRegReducer, dispatchRegReducer] = useReducer(RegisterReducer.RegisterReducer, RegisterReducer.initialState);
+
+    const handleRegister = (event) => {
+        dispatchRegReducer(ACTIONS.REGISTER_SUCCESS(event))
+    }
+
     //Auth Reducer I think this will work need to change maybe
 
     const [stateAuthReducer, dispatchAuthReducer] = useReducer(AuthReducer.AuthReducer,
         AuthReducer.initialState)
 
-    const handleRegister = (userInfo) => {
-        dispatchAuthReducer(ACTIONS.REGISTER_SUCCESS(userInfo))
-    }
 
-    const handleRegisterFail = (errorMessage) => {
-        dispatchAuthReducer.apply(ACTIONS.REGISTER_FAIL(errorMessage))
-    }
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -46,19 +49,6 @@ const ContextState = () => {
         dispatchAuthReducer(ACTIONS.remove_profile())
     }
 
-    //This will have to be changed no sure if the action payload will work with my hook.     
-    const [stateFormReducer, dispatchFormReducer] = useReducer(FormReducer.FormReducer, FormReducer.initialState)
-
-
-    const handleFormChange = (event) => {
-        dispatchFormReducer(ACTIONS.user_input_change(event.target.value))
-    };
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-        event.persist();
-        dispatchFormReducer(ACTIONS.user_input_submit(event.target.useContext.value))
-    };
 
     //Handle authentication from callback
     const handleAuthentication = (props) => {
@@ -71,6 +61,11 @@ const ContextState = () => {
         <div>
             <Context.Provider
                 value={{
+
+                    //Reg Reducer
+                    userRegState: stateRegReducer.userReg,
+                    handleUserReg:(event) => handleRegister(event),
+
                     //Auth Reducer
                     authState: stateAuthReducer.is_authenticated,
                     profileState: stateAuthReducer.profile,
@@ -90,3 +85,5 @@ const ContextState = () => {
     )
 
 }
+
+export default ContextState; 

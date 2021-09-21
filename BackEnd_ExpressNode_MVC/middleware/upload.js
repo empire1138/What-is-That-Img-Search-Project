@@ -1,7 +1,7 @@
 const multer = require('multer')
 
 module.exports.image = {
-    storage = () => {
+    storage: function () {
         let storage = multer.diskStorage({
             destination: function (req, file, cd) {
                 cb(null, 'public/images')
@@ -12,7 +12,7 @@ module.exports.image = {
         })
         return storage;
     },
-    allowedImage = (req, file, cb) => {
+    allowedFile: function (req, file, cb) {
         // Allowed ext
         const filetypes = /jpg|JPG|jpeg|JPEG|png|PNG|gif|GIF/;
         // Check ext

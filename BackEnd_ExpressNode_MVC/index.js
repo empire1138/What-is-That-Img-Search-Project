@@ -4,6 +4,11 @@ require('dotenv').config();
 const app = express();
 const cors = require('cors');
 const multer = require('multer');
+const mysql = require('mysql2/promise');
+
+//.env port loaded file
+require('dotenv').config();
+const port = process.env.PORT;
 
 
 const errorController = require('./controllers/error');
@@ -45,7 +50,7 @@ app.use((req, res, next) => {
 
 //Non-Protected Routes 
 //This routes has both login and Sign-up
-app.use('/', loginRoutes);
+app.use('/auth', loginRoutes);
 
 
 //Protected Routes 

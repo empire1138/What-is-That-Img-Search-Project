@@ -1,7 +1,4 @@
 import React, { useState, useRef, useCallback } from "react";
-import useForm from "../../Hooks/useForm";
-import validate from "../../utils/Validation/validateInfo";
-import { Link } from 'react-router-dom';
 import './Registration.css';
 import RegistrationForm from "../../Components/RegistrationForm/RegistrationForm";
 
@@ -9,13 +6,20 @@ import RegistrationForm from "../../Components/RegistrationForm/RegistrationForm
 function Registration() {
     // This will need to be set after confirm from  the API the form went though 
     const [isSubmitted, setIsSubmitted] = useState(false)
-    const submitForm = useCallback(() => {
+
+    const submitedForm = useCallback(() => {
         setIsSubmitted(true)
     }, [setIsSubmitted])
 
+    //This will pass up from the competent the is submitted I'll add a loader later. 
+    function submitForm() {
+        setIsSubmitted(true);
+    }
+
+
     return (
         <div>
-            <RegistrationForm />
+            <RegistrationForm submitForm={submitForm} />
         </div>
     )
 }

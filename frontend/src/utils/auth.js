@@ -8,7 +8,7 @@ class Auth {
 
 
 
-  resister = (firstName,lastName, email, password, confirmedPassword) => {
+  register = (firstName,lastName, email, password, confirmedPassword) => {
       return axios.post(API_URL + "/Registration" , {
         firstName,
         lastName, 
