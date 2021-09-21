@@ -1,6 +1,7 @@
-import React, { useState, useRef, useReducer } from "react";
+import React, { useState, useRef, useReducer, useContext } from "react";
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
+import Context from "../../utils/Context/context";
 
 function loginReducer(state, action) {
     switch (action.type) {
@@ -44,6 +45,7 @@ const initialState = {
 function Login() {
 
     const [state, dispatch] = useReducer(loginReducer, initialState);
+    const context = useContext(Context)
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

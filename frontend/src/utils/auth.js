@@ -19,7 +19,7 @@ class Auth {
   } 
 
   login = (email, password) =>{
-    return axios.post(API_URL, {
+    return axios.post(API_URL, + "/login", {
       email, 
       password
     })

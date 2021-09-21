@@ -14,22 +14,24 @@ const auth = new Auth()
 // This will change as well. Really its a placeHolder till I work out all of the context needs. 
 const ContextState = () => {
 
-    
+
     //Auth Reducer I think this will work need to change maybe
 
     const [stateAuthReducer, dispatchAuthReducer] = useReducer(AuthReducer.AuthReducer,
         AuthReducer.initialState)
-    
+
     const handleRegister = (userInfo) => {
         dispatchAuthReducer(ACTIONS.REGISTER_SUCCESS(userInfo))
-    }    
+    }
 
-    const handleRegisterFail = (errorMessage) =>{
+    const handleRegisterFail = (errorMessage) => {
         dispatchAuthReducer.apply(ACTIONS.REGISTER_FAIL(errorMessage))
     }
 
-    const handleLogin = (userLogin) => {
-        dispatchAuthReducer(ACTIONS.login_success(userLogin))
+    const handleLogin = (event) => {
+        event.preventDefault();
+        event.persist();
+        dispatchAuthReducer(ACTIONS.login_success(event.target.userLogin.value))
     }
 
     const handleLogout = () => {
@@ -54,7 +56,8 @@ const ContextState = () => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        event.persist(); dispatchFormReducer(ACTIONS.user_input_submit(event.target.useContext.value))
+        event.persist();
+        dispatchFormReducer(ACTIONS.user_input_submit(event.target.useContext.value))
     };
 
     //Handle authentication from callback
@@ -68,10 +71,20 @@ const ContextState = () => {
         <div>
             <Context.Provider
                 value={{
+                    //Auth Reducer
+                    authState: stateAuthReducer.is_authenticated,
+                    profileState: stateAuthReducer.profile,
+                    handleUserLogin: (event) => handleLogin(event),
+                    handleUserLogout: () => handleLogout(),
+                    handleUserAddProfile: (profile) => handleAddProfile(profile),
+                    handleUserRemoveProfile: () => handleRemoveProfile(),
 
+                    //Handle auth
+                    handleAuth: (props) => handleAuthentication(props),
+                    authObj: auth
                 }}
             >
-            <Routes/> 
+                <Routes />
             </Context.Provider>
         </div>
     )
