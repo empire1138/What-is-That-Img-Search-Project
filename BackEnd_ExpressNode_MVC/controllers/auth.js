@@ -67,14 +67,15 @@ exports.login = async (req, res, next) => {
                 msg: 'Email not found'
             });
         }
-        const savedPassword = `${storedUser.passWord}`;
+        const savedPassword = `${storedUser.password}`;
 
         const isEqual = await bcrypt.compare(password, savedPassword);
 
+        
         if (isEqual) {
             const userPayLoad = {
-                lastName: storedUser.lastName,
-                firstName: storedUser.firstName,
+                last_name: storedUser.last_name,
+                first_name: storedUser.first_name,
                 email: storedUser.email,
                 userId: storedUser.id
             }
