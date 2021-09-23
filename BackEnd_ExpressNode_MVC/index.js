@@ -19,11 +19,12 @@ const logoutRoutes = require('./routes/logout');
 const userProfileRoutes = require('./routes/userProfile');
 const { urlencoded } = require('body-parser');
 
-app.use(cors({
-    origin: true,
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
+// app.use(cors({
+//     origin: true,
+//     methods: ["GET", "POST"],
+//     credentials: true,
+// }));
+app.use(cors());
 
 
 app.use(logger("dev"));

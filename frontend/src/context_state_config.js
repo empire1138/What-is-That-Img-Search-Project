@@ -3,11 +3,9 @@ import Context from "./utils/Context/context";
 import * as ACTIONS from './store/actions/actions'
 
 //These will need to be changed as the state and reducer needs change 
-import * as ReducerOne from './store/reducers/plain_reducer';
 import * as AuthReducer from './store/reducers/auth_reducer';
-import * as FormReducer from './store/reducers/useForm_reducer';
 import * as RegisterReducer from './store/reducers/register_reducer';
-import Routes from ''
+import Routes from './Routes'
 import Auth from './utils/auth';
 
 const auth = new Auth()
@@ -21,7 +19,7 @@ const ContextState = () => {
     const [stateRegReducer, dispatchRegReducer] = useReducer(RegisterReducer.RegisterReducer, RegisterReducer.initialState);
 
     const handleRegister = (event) => {
-        dispatchRegReducer(ACTIONS.REGISTER_SUCCESS(event))
+        dispatchRegReducer(ACTIONS.register_success(event))
     }
 
     //Auth Reducer I think this will work need to change maybe
@@ -31,10 +29,11 @@ const ContextState = () => {
 
 
 
-    const handleLogin = (event) => {
-        event.preventDefault();
-        event.persist();
-        dispatchAuthReducer(ACTIONS.login_success(event.target.userLogin.value))
+    const handleLogin = (payload) => {
+        // event.preventDefault();
+        // event.persist();
+        console.log(payload, 'payload2')
+        dispatchAuthReducer(ACTIONS.login_success(payload))
     }
 
     const handleLogout = () => {
@@ -69,7 +68,7 @@ const ContextState = () => {
                     //Auth Reducer
                     authState: stateAuthReducer.is_authenticated,
                     profileState: stateAuthReducer.profile,
-                    handleUserLogin: (event) => handleLogin(event),
+                    handleUserLogin: (payload) => handleLogin(payload),
                     handleUserLogout: () => handleLogout(),
                     handleUserAddProfile: (profile) => handleAddProfile(profile),
                     handleUserRemoveProfile: () => handleRemoveProfile(),

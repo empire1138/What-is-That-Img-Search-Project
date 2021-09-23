@@ -3,6 +3,8 @@ import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
 import Context from "../../utils/Context/context";
 
+import * as authReducer from '../../store/reducers/auth_reducer';
+
 function loginReducer(state, action) {
     switch (action.type) {
         case 'login': {
@@ -45,6 +47,8 @@ const initialState = {
 function Login() {
 
     const [state, dispatch] = useReducer(loginReducer, initialState);
+    const [authState, authDispatch] = useReducer(authReducer.AuthReducer, authReducer.initialState); 
+
     const context = useContext(Context)
 
     const [email, setEmail] = useState('');
@@ -67,6 +71,10 @@ function Login() {
     // This will handle the loading and the validate when i figure it out. 
     const handleLogin = async e => {
         e.preventDefault();
+        let payload = {email, password}
+        console.log(payload, ' payload' )
+        context.handleUserLogin(payload)
+        context.authObj.login(payload); 
         dispatch({ type: ' login' }) // After this should be the function to pass in login then afterwards reset the setLoading 
         try {
             dispatch({ type: 'success' })
@@ -74,7 +82,7 @@ function Login() {
             dispatch({ type: 'error' })
             console.log(error, 'Login Error')
         }
-
+        
     }
 
     return (
@@ -121,7 +129,7 @@ function Login() {
                         </button>
 
                         <div>
-                            <Link to="/Registration">Need to Register instead?</Link>
+                            <Link to="/auth/registration">Need to Register instead?</Link>
                         </div>
                     </form>
                 </div>

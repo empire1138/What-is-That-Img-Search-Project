@@ -1,35 +1,38 @@
 import history from './history';
 import axios from 'axios'
-const API_URL = "http://localhost:3306"
+const API_URL = "http://localhost:3000/"
 
 
 // I have to change all of this to work with axios 
-class Auth {
+export default class Auth {
 
 
 
-  register = (firstName,lastName, email, password, confirmedPassword) => {
-      return axios.post(API_URL + "/Registration" , {
-        firstName,
-        lastName, 
-        email,
-        password,
-        confirmedPassword
-      });
-  } 
+  register = (firstName, lastName, email, password, confirmedPassword) => {
+    return axios.post(API_URL + "auth/registration", {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmedPassword
+    });
+  }
 
-  login = (email, password) =>{
-    return axios.post(API_URL, + "/login", {
-      email, 
-      password
-    })
-    .then((res) => {
+  login = async ({ email, password }) => {
+    console.log(email, password, 'email password')
+
+    return axios.post(API_URL +"auth/login", {
+      
+        email: email,
+        password: password
+      
+    }).then((res) => {
       if (res.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(res.data)); 
-        let expiresAt = JSON.stringify((res.data.expiresIn * 1000 + new Date().getTime()))
-        localStorage.setItem('expiresAt', expiresAt)
+        localStorage.setItem("user", JSON.stringify(res.data));
+        let expiresAt = JSON.stringify((res.data.expiresIn * 1000 + new Date().getTime()));
+        localStorage.setItem('expiresAt', expiresAt);
       }
-      return res.data; 
+      return res.data;
     })
   }
 
@@ -44,4 +47,4 @@ class Auth {
     return new Date().getTime() < expiresAt
   }
 
-}export default new Auth(); 
+}

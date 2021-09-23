@@ -8,7 +8,7 @@ import InfinityScroll from 'react-infinite-scroll-component';
 
 function SearchDashBoard() {
     const [returnImageResults, setImageResults] = useState([]);
-    const [page, setPage] = useState(0);
+    // const [page, setPage] = useState(0);
 
     const fetchMorePages = () => {
 

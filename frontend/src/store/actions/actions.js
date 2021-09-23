@@ -1,4 +1,4 @@
-import * as ACTION_TYPES from './action_types'
+import * as ACTION_TYPES from './actions_types';
 
 // Generic actions.types
 export const SUCCESS = {

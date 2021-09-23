@@ -1,4 +1,5 @@
 import React from 'react';
+import ContextState from './context_state_config'; 
 import {
     BrowserRouter as Router,
     Redirect,
@@ -14,23 +15,24 @@ import ImgUpload from './Pages/ImgUpload/ImgUpload.js';
 
 function app() {
     return (
-        <Router>
-           <Switch>
-          <Route exact path="/">
-            <Login/>
-          </Route>
-          <Route path="/Registration">
-            <Registration />
-          </Route>
-          <Route path="/SearchDashBoard">
-            <SearchDashBoard/>
-          </Route>
-          <Route path="/UserUpload">
-            <ImgUpload/>
-          </Route>
-        </Switch>
-        </Router>
-    )
+    //     <Router>
+    //        <Switch>
+    //       <Route exact path="/">
+    //         <Login/>
+    //       </Route>
+    //       <Route path="/Registration">
+    //         <Registration />
+    //       </Route>
+    //       <Route path="/SearchDashBoard">
+    //         <SearchDashBoard/>
+    //       </Route>
+    //       <Route path="/UserUpload">
+    //         <ImgUpload/>
+    //       </Route>
+    //     </Switch>
+    //     </Router>
+          <ContextState />  
+     )
 }
 
 export default app;

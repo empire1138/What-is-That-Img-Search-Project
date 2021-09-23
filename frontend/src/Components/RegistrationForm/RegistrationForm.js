@@ -82,7 +82,7 @@ function RegistrationForm({submitForm}) {
                     Sign up
                 </button>
                 <div className='form-input-login'>
-                    <Link to="/" > Already have an account? Login here </Link>
+                    <Link to="/auth/login" > Already have an account? Login here </Link>
                 </div>
             </form>
         </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { Router, Route, Switch, Redirect } from 'react-router'
-
+import { Route, Switch, Redirect } from 'react-router-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 import Context from "./utils/Context/context";
 import history from "./utils/history";
 
@@ -19,7 +19,7 @@ import PageNotFound from './Pages/PageNotFound/PageNotFound';
 const PrivateRoute = ({ component: Component, auth }) => (
     <Route render={props => auth === true
         ? <Component auth={auth} {...props} />
-        : <Redirect to={{ pathname: '/' }} />
+        : <Redirect to={{ pathname: '/auth/login' }} />
     }
     />
 )
@@ -33,10 +33,11 @@ const Routes = () => {
             <Router history={history}>
                 <div>
                     <Switch>
-                        <Route exact path='/' >
+
+                        <Route path='/auth/login' >
                             <Login />
                         </Route>
-                        <Route path='/Registration'>
+                        <Route path='/auth/registration'>
                             <Registration />
                         </Route>
 
@@ -51,14 +52,13 @@ const Routes = () => {
                         <PrivateRoute path='/UserProfile'
                             auth={context.authState}
                             component={UserProfile} />
-
+                        <Redirect from='/' to='/auth/login' />
                         <Route>
                             <PageNotFound />
                         </Route>
 
                     </Switch>
                 </div>
-
             </Router>
         </div>
     )
