@@ -6,7 +6,7 @@ const API_URL = "http://localhost:3000/"
 // I have to change all of this to work with axios 
 export default class Auth {
 
-
+ 
 
   register = (firstName, lastName, email, password, confirmedPassword) => {
     return axios.post(API_URL + "auth/registration", {
@@ -28,20 +28,25 @@ export default class Auth {
       
     }).then((res) => {
       if (res.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem('"accessToken', JSON.stringify(res.data.accessToken))
         let expiresAt = JSON.stringify((res.data.expiresIn * 1000 + new Date().getTime()));
         localStorage.setItem('expiresAt', expiresAt);
-        console.log('Got Token0');
+        console.log( expiresAt ,'expiresAt');
       }
       console.log(res.data, 'res.data')
+      setTimeout(() => { history.replace('/SearchDashBoard') }, 600);
+      
       return res.data;
     })
+   
   }
 
   logout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem('expiresAt')
-    setTimeout(() => { history.replace('/authcheck') }, 200);
+    localStorage.removeItem('expiresAt');
+    localStorage.removeItem('accessToken');
+    setTimeout(() => { history.replace('/auth/login') }, 200);
   }
 
   isAuthenticated = () => {

@@ -8,15 +8,16 @@ const AuthCheck = () => {
 
     useEffect(() => {
         if (context.authObj.isAuthenticated()) {
+            context.handleUserLogin()
             context.handleUserAddProfile(context.authObj.userProfile)
-            history.replace('/')
+            history.replace('/SearchDashBoard')
         }
         else {
             context.handleUserLogout()
             context.handleUserRemoveProfile()
-            history.replace('/')
+            history.replace('/auth/login')
         }
-    }, [])
+    }, [context])
     return (
         <div>
 

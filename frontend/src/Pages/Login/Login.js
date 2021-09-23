@@ -82,7 +82,7 @@ function Login() {
             dispatch({ type: 'error' })
             console.log(error, 'Login Error')
         }
-        
+        console.log(context.authObj.isAuthenticated(), 'authObj isAuth')
     }
 
     return (

@@ -82,9 +82,11 @@ exports.login = async (req, res, next) => {
 
             const encodedUser = jwt.sign(userPayLoad, process.env.JWT_KEY)
             console.log(encodedUser, 'encodedUser')
+            // Will add express sessions later 
             res.status(200).json({
                 accessToken:encodedUser,
-                user: userPayLoad
+                user: userPayLoad,
+                expiresIn:  3600000     // Should be 1 hr in milliseconds     
             });
         } else {
             res.status(403).json({

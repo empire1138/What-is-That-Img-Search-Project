@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 import Context from "./utils/Context/context";
 import history from "./utils/history";
@@ -29,17 +29,13 @@ const Routes = () => {
 
 
     return (
-        <div>
             <Router history={history}>
                 <div>
                     <Switch>
 
-                        <Route path='/auth/login' >
-                            <Login />
-                        </Route>
-                        <Route path='/auth/registration'>
-                            <Registration />
-                        </Route>
+                        <Route path='/auth/login' component={Login} />
+    
+                        <Route path='/auth/registration' component={Registration} />
 
                         <PrivateRoute path='/SearchDashBoard'
                             auth={context.authState}
@@ -60,7 +56,6 @@ const Routes = () => {
                     </Switch>
                 </div>
             </Router>
-        </div>
     )
 }
 

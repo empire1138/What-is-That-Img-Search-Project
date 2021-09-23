@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext } from "react";
 import Context from "./utils/Context/context";
 import * as ACTIONS from './store/actions/actions'
 
@@ -12,7 +12,7 @@ const auth = new Auth()
 
 // This will change as well. Really its a placeHolder till I work out all of the context needs. 
 const ContextState = () => {
-
+   
 
 
     //Register Reducer
@@ -34,6 +34,7 @@ const ContextState = () => {
         // event.persist();
         console.log(payload, 'payload2')
         dispatchAuthReducer(ACTIONS.login_success(payload))
+        
     }
 
     const handleLogout = () => {
@@ -63,7 +64,7 @@ const ContextState = () => {
 
                     //Reg Reducer
                     userRegState: stateRegReducer.userReg,
-                    handleUserReg:(event) => handleRegister(event),
+                    handleUserReg: (event) => handleRegister(event),
 
                     //Auth Reducer
                     authState: stateAuthReducer.is_authenticated,
