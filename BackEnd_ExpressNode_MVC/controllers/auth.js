@@ -81,7 +81,11 @@ exports.login = async (req, res, next) => {
             }
 
             const encodedUser = jwt.sign(userPayLoad, process.env.JWT_KEY)
-            res.status(200).json(encodedUser);
+            console.log(encodedUser, 'encodedUser')
+            res.status(200).json({
+                accessToken:encodedUser,
+                user: userPayLoad
+            });
         } else {
             res.status(403).json({
                 data: null,

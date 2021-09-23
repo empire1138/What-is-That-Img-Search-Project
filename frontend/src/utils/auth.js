@@ -31,7 +31,9 @@ export default class Auth {
         localStorage.setItem("user", JSON.stringify(res.data));
         let expiresAt = JSON.stringify((res.data.expiresIn * 1000 + new Date().getTime()));
         localStorage.setItem('expiresAt', expiresAt);
+        console.log('Got Token0');
       }
+      console.log(res.data, 'res.data')
       return res.data;
     })
   }
