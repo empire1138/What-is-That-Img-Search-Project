@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Route, Switch, Redirect } from 'react-router'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import Context from "./utils/Context/context";
 import history from "./utils/history";
 
@@ -29,33 +29,44 @@ const Routes = () => {
 
 
     return (
-            <Router history={history}>
-                <div>
-                    <Switch>
+        <Router history={history}>
+            <div>
+                <Switch>
 
-                        <Route path='/auth/login' component={Login} />
-    
-                        <Route path='/auth/registration' component={Registration} />
+                    <Route path='/auth/login' component={Login} />
 
-                        <PrivateRoute path='/SearchDashBoard'
-                            auth={context.authState}
-                            component={SearchDashBoard} />
+                    <Route path='/auth/registration' component={Registration} />
+                    
+                    <Route path='/SearchDashBoard' component={SearchDashBoard} />
+                    <Route path='/ImgUpload' component={ImgUpload}/>
 
-                        <PrivateRoute path='/ImgUpload'
-                            auth={context.authState}
-                            component={ImgUpload} />
+{/* 
+                    <PrivateRoute path='/ImgUpload'
+                        auth={context.authState}
+                        component={ImgUpload} />
 
-                        <PrivateRoute path='/UserProfile'
-                            auth={context.authState}
-                            component={UserProfile} />
-                        <Redirect from='/' to='/auth/login' />
-                        <Route>
-                            <PageNotFound />
-                        </Route>
+                    <PrivateRoute path='/UserProfile'
+                        auth={context.authState}
+                        component={UserProfile} />
 
-                    </Switch>
-                </div>
-            </Router>
+                    <PrivateRoute path='/SearchDashBoard'
+                        auth={context.authState}
+                        component={SearchDashBoard} />
+
+                    <Route path=' SearchDashBoard'
+                        render={(props) => {
+                            context.handleAuth(props); 
+                            return <SearchDashBoard />
+                        }} /> */}
+
+                    <Redirect from='/' to='/auth/login' />
+                    <Route>
+                        <PageNotFound />
+                    </Route>
+
+                </Switch>
+            </div>
+        </Router>
     )
 }
 

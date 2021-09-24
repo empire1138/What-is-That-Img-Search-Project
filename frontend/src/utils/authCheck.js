@@ -9,7 +9,7 @@ const AuthCheck = () => {
     useEffect(() => {
         if (context.authObj.isAuthenticated()) {
             context.handleUserLogin()
-            context.handleUserAddProfile(context.authObj.userProfile)
+            context.handleUserAddProfile(context.authObj.userInfo)
             history.replace('/SearchDashBoard')
         }
         else {

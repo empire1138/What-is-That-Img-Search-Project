@@ -2,6 +2,7 @@ import React, { useState, useRef, useReducer, useContext } from "react";
 import styles from './Login.module.css';
 import { Link } from 'react-router-dom';
 import Context from "../../utils/Context/context";
+import history from "../../utils/history";
 
 import * as authReducer from '../../store/reducers/auth_reducer';
 
@@ -83,6 +84,12 @@ function Login() {
             console.log(error, 'Login Error')
         }
         console.log(context.authObj.isAuthenticated(), 'authObj isAuth')
+
+        if(context.authObj.isAuthenticated()){
+            setEmail('');
+            setPassword('');
+            history.replace('/SearchDashBoard')
+        }
     }
 
     return (
