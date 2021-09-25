@@ -77,8 +77,7 @@ const ContextState = () => {
                     //Handle auth
                     handleAuth: (props) => handleAuthentication(props),
                     authObj: auth
-                }}
-            >
+                }}>
                 <Routes />
             </Context.Provider>
         </div>

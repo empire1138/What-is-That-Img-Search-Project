@@ -45,7 +45,7 @@ const initialState = {
     isLoggedIn: false,
 }
 
-function Login() {
+function Login(props) {
 
     const [state, dispatch] = useReducer(loginReducer, initialState);
     const [authState, authDispatch] = useReducer(authReducer.AuthReducer, authReducer.initialState); 
@@ -88,7 +88,8 @@ function Login() {
         if(context.authObj.isAuthenticated()){
             setEmail('');
             setPassword('');
-            history.replace('/SearchDashBoard')
+            history.push('/SearchDashBoard')
+    
         }
     }
 

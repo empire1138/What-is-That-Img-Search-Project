@@ -6,7 +6,7 @@ import ImageList from '../../Components/ImageList/ImageList.js'
 import Loader from '../../Components/ImageListLoader/loader';
 import InfinityScroll from 'react-infinite-scroll-component';
 
-function SearchDashBoard() {
+const SearchDashBoard = props => {
     const [returnImageResults, setImageResults] = useState([]);
     // const [page, setPage] = useState(0);
 

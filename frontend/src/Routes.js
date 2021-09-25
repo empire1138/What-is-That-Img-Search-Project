@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { Route, Switch, Redirect } from 'react-router'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Context from "./utils/Context/context";
 import history from "./utils/history";
 
@@ -33,14 +32,14 @@ const Routes = () => {
             <div>
                 <Switch>
 
-                    <Route path='/auth/login' component={Login} />
+                    <Route exact path='/auth/login' component={Login} />
 
-                    <Route path='/auth/registration' component={Registration} />
+                    <Route exact path='/auth/registration' component={Registration} />
+
+                    {/* <Route exact path='/SearchDashBoard' component={SearchDashBoard} />
+                    <Route exact path='/ImgUpload' component={ImgUpload} /> */}
+
                     
-                    <Route path='/SearchDashBoard' component={SearchDashBoard} />
-                    <Route path='/ImgUpload' component={ImgUpload}/>
-
-{/* 
                     <PrivateRoute path='/ImgUpload'
                         auth={context.authState}
                         component={ImgUpload} />
@@ -49,21 +48,18 @@ const Routes = () => {
                         auth={context.authState}
                         component={UserProfile} />
 
-                    <PrivateRoute path='/SearchDashBoard'
+                    {/* <PrivateRoute path='/SearchDashBoard'
                         auth={context.authState}
-                        component={SearchDashBoard} />
+                        component={SearchDashBoard} /> */}
 
                     <Route path=' SearchDashBoard'
                         render={(props) => {
                             context.handleAuth(props); 
                             return <SearchDashBoard />
-                        }} /> */}
+                        }} />
 
                     <Redirect from='/' to='/auth/login' />
-                    <Route>
-                        <PageNotFound />
-                    </Route>
-
+                    <Route component={PageNotFound} />
                 </Switch>
             </div>
         </Router>
