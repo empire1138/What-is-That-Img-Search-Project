@@ -1,10 +1,15 @@
 import history from './history';
+import React, { useContext, useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import SearchDashBoard from '../Pages/SearchDashBoard/SearchDashBoard';
+
 const API_URL = "http://localhost:3000/"
 
 
 // I have to change all of this to work with axios 
 export default class Auth {
+
 
   userInfo = {}
 

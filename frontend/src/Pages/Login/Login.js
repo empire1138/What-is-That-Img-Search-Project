@@ -88,7 +88,7 @@ function Login(props) {
         if(context.authObj.isAuthenticated()){
             setEmail('');
             setPassword('');
-            history.push('/SearchDashBoard')
+            // history.push('/SearchDashBoard')
     
         }
     }

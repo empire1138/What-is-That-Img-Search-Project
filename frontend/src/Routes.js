@@ -52,7 +52,7 @@ const Routes = () => {
                         auth={context.authState}
                         component={SearchDashBoard} /> */}
 
-                    <Route path=' SearchDashBoard'
+                    <Route path='/SearchDashBoard'
                         render={(props) => {
                             context.handleAuth(props); 
                             return <SearchDashBoard />
